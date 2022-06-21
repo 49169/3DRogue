@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://EnemyAsset/Explosion.gd" type="Script" id=1]
+
+[sub_resource type="SphereShape" id=1]
+radius = 4.0
+
+[sub_resource type="SphereMesh" id=2]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+albedo_color = Color( 1, 1, 1, 0.262745 )
+
+[node name="Explosion" type="Area"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )

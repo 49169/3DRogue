@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Bullets/PiercingBullet.gd" type="Script" id=1]
+[ext_resource path="res://addons/Trail/trail_3d.gd" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.2, 0.2, 0.5 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.5, 0.5, 1 )
+
+[node name="PiercingBullet" type="Area"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Trail3D" type="ImmediateGeometry" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.51092 )
+script = ExtResource( 2 )
+
+[connection signal="body_entered" from="." to="." method="_on_PiercingBullet_body_entered"]
